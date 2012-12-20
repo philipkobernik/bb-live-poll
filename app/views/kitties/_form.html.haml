@@ -1,0 +1,16 @@
+= form_for @kitty do |f|
+  - if @kitty.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@kitty.errors.count, "error")} prohibited this kitty from being saved:"
+      %ul
+        - @kitty.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :lives
+    = f.number_field :lives
+  .actions
+    = f.submit 'Save'

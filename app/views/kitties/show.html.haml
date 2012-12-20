@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @kitty.name
+%p
+  %b Lives:
+  = @kitty.lives
+
+= link_to 'Edit', edit_kitty_path(@kitty)
+\|
+= link_to 'Back', kitties_path
