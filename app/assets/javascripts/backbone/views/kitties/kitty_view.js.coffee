@@ -21,7 +21,17 @@ class BbLivePoll.Views.Kitties.KittyView extends Backbone.View
 
   render: ->
     @$el.html(@template(@model.toJSON() ))
+    @setStyle()
     return this
+
+  setStyle: ->
+    red = Math.round(Math.random() * 254 + 1)
+    green = Math.round(Math.random() * 254 + 1)
+    blue = Math.round(Math.random() * 254 + 1)
+    color = "rgb(#{red},#{green},#{blue})"
+    reverse = "rgb(#{(255 - red)},#{(255 - green)},#{(255 - blue)})"
+    @$el.css('background-color', color)
+    @$el.css('color', reverse)
 
   onChange: (model, options)->
     @render()
