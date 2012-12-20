@@ -27,6 +27,7 @@ class BbLivePoll.Views.Kitties.NewView extends Backbone.View
 
       error: (kitty, jqXHR) =>
         @model.set({errors: $.parseJSON(jqXHR.responseText)})
+      wait: true
     )
 
   render: ->

@@ -1,21 +1,7 @@
-%h1 Listing kitties
+#kitties
 
-%table
-  %tr
-    %th Name
-    %th Lives
-    %th
-    %th
-    %th
-
-  - @kitties.each do |kitty|
-    %tr
-      %td= kitty.name
-      %td= kitty.lives
-      %td= link_to 'Show', kitty
-      %td= link_to 'Edit', edit_kitty_path(kitty)
-      %td= link_to 'Destroy', kitty, method: :delete, data: { confirm: 'Are you sure?' }
-
-%br
-
-= link_to 'New Kitty', new_kitty_path
+:javascript
+  $(function() {
+    window.router = new BbLivePoll.Routers.KittiesRouter({kitties: #{@kitties.to_json.html_safe}});
+    Backbone.history.start();
+  });

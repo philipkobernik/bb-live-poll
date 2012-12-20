@@ -5,9 +5,19 @@ class BbLivePoll.Views.Kitties.IndexView extends Backbone.View
 
   initialize: () ->
     @options.kitties.bind('reset', @addAll)
+    @options.kitties.bind('add', @addOne)
+
+    # fetch the kitties collection every 3 seconds.
+    # update:true enables intelligent collection updating.
+    # http://backbonejs.org/#Collection-update
+    setInterval ( =>@options.kitties.fetch({update:true}) ), 3000
 
   addAll: () =>
+    @removeAll()
     @options.kitties.each(@addOne)
+
+  removeAll: ->
+    @$('tr.kitty').remove()
 
   addOne: (kitty) =>
     view = new BbLivePoll.Views.Kitties.KittyView({model : kitty})
